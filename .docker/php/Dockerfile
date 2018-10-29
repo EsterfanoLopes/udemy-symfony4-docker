@@ -7,18 +7,21 @@ RUN apt-get update \
     zlib1g-dev \
     sudo
 
-RUN docker-php-ext-install pdo pdo_mysql zip
+RUN apt-get update && apt-get install -y zip unzip git                  && \
+    pecl install xdebug                                                 && \
+    docker-php-ext-install pdo pdo_mysql zip                            && \
+    docker-php-ext-enable xdebug
+
+RUN wget --no-check-certificate https://phar.phpunit.de/phpunit-6.5.3.phar && \
+    mv phpunit*.phar phpunit.phar && \
+    chmod +x phpunit.phar && \
+    mv phpunit.phar /usr/local/bin/phpunit
 
 COPY php.ini /usr/local/etc/php/php.ini
 COPY php-fpm-pool.conf 	/usr/local/etc/php/pool.d/www.conf
 
 RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
 	mv composer.phar /usr/local/bin/composer
-
-RUN wget --no-check-certificate https://phar.phpunit.de/phpunit-6.5.3.phar && \
-    mv phpunit*.phar phpunit.phar && \
-    chmod +x phpunit.phar && \
-    mv phpunit.phar /usr/local/bin/phpunit
 
 RUN	echo "deb https://deb.nodesource.com/node_6.x jessie main" >> /etc/apt/sources.list.d/nodejs.list && \
 	wget -nv -O -  https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
