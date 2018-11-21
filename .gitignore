@@ -4,5 +4,7 @@
 /public/bundles/
 /var/
 /vendor/
-.idea/
+/.idea/
+full-source-code.zip
+/.docker/
 ###< symfony/framework-bundle ###
