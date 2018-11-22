@@ -16,6 +16,7 @@
         "symfony/maker-bundle": "^1.9",
         "symfony/orm-pack": "^1.0",
         "symfony/twig-bundle": "*",
+        "symfony/validator": "4.1.*",
         "symfony/webpack-encore-bundle": "^1.0",
         "symfony/yaml": "*"
     },
