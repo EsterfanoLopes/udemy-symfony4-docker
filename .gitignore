@@ -7,4 +7,5 @@
 /.idea/
 full-source-code.zip
 /.docker/
+/node_modules/
 ###< symfony/framework-bundle ###
