@@ -32,7 +32,7 @@ class SecurityController
                 'last_username' => $authenticationUtils->getLastUsername(),
                 'error' => $authenticationUtils->getLastAuthenticationError()
             ]
-    ));
+        ));
     }
 
     /**
