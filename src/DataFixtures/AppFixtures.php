@@ -16,18 +16,21 @@ class AppFixtures extends Fixture
             'email' => 'john_doe@doe.com',
             'password' => 'john123',
             'fullName' => 'John Doe',
+            'roles' => [User::ROLE_USER]
         ],
         [
             'username' => 'rob_smith',
             'email' => 'rob_smith@smith.com',
             'password' => 'rob12345',
             'fullName' => 'Rob Smith',
+            'roles' => [User::ROLE_USER]
         ],
         [
-            'username' => 'marry_gold',
-            'email' => 'marry_gold@gold.com',
-            'password' => 'marry12345',
-            'fullName' => 'Marry Gold',
+            'username' => 'super_admin',
+            'email' => 'super_admin@gold.com',
+            'password' => 'admin12345',
+            'fullName' => 'Micro Admin',
+            'roles' => [User::ROLE_ADMIN]
         ],
     ];
 
@@ -78,7 +81,6 @@ class AppFixtures extends Fixture
 
     public function loadUsers(ObjectManager $manager)
     {
-
         foreach (self::USERS as $userData) {
             $user = new User();
             $user->setUsername($userData['username']);
@@ -88,6 +90,7 @@ class AppFixtures extends Fixture
                 $user,
                 $userData['password'])
             );
+            $user->setRoles($userData['roles']);
 
             $this->addReference($userData['username'], $user);
 
