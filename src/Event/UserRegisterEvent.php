@@ -23,4 +23,9 @@ class UserRegisterEvent extends Event
     {
         $this->registeredUser = $registeredUser;
     }
+
+    public function getRegisteredUser()
+    {
+        return $this->registeredUser;
+    }
 }
