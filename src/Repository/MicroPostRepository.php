@@ -27,7 +27,7 @@ class MicroPostRepository extends ServiceEntityRepository
         $qb->select('p')
             ->where('p.user IN (:following)')
             ->setParameter('following', $users)
-            ->orderBy('time', 'DESC');
+            ->orderBy('p.time', 'DESC');
 
         return $qb->getQuery()->getResult();
     }
